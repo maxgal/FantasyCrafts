@@ -10,4 +10,5 @@ if (!check_login()) //Проверяем не пришло ли данных с 
 }
 else
 {
+  header("Location: game.php");
 }
