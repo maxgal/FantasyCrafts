@@ -11,5 +11,12 @@ if (!check_login()) //Проверяем не пришло ли данных с 
 }
 else
 {
-  
+  if(check_auth())
+  {
+    //Если авторизация в порядке, загружаем игровые функции
+  }
+  else
+  {
+    echo "Hacking attempt! Logs sent to admins!";
+  }
 }
