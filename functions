@@ -6,3 +6,21 @@ function show_login_page()
     echo "<input type=submit name=logon value='Enter'/>";
     echo "</form>";
 }
+
+function check_auth($pers_name = '', $uniq = '')
+{
+    /*Каждый раз при авторизации, в базу данных в таблицу auth_users заносится имя перса и случайное число. Когда
+    выполняются какие то действия, проверяется авторизирован ли пользователь
+    */
+    $pers_name = htmlspecialchars($pers_name);
+    $uniq = (int) $uniq;
+    $query = "select pers_name, uniq from auth_users where pers_name='$pers_name'";
+    $result = mysql_query($query);
+    if(mysql_num_rows($result) > 0)
+    {
+        $row = mysql_fetch_array($result, MYSQL_ASSOC);
+        if($row['uniq'] == $uniq) return true;
+        else return false;
+    }
+    else return false;
+}
