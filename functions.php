@@ -2,10 +2,19 @@
 
 function show_login_page() 
 {
-    echo "<form action='./' method='post'>";
+    echo "<form action='./game.php' method='post'>";
     echo "<input type=text name=pers_name size=30/><br/>";
     echo "<input type=text name=pwd size=30/><br/>";
     echo "<input type=submit name=logon value='Enter'/>";
+    echo "</form>";
+}
+
+function show_reg_page()
+{
+    echo "<form action='reg.php' method='post'>";
+    echo "<input type=text name=pers_name size=30/><br/>";
+    echo "<input type=text name=email size=30/><br/>";
+    echo "<input type=submit name=reg value='Create Pers'/>";
     echo "</form>";
 }
 
