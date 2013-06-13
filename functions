@@ -45,3 +45,24 @@ function create_new_user($pers_name = '', $email = '', $pwd = '')
         first_login($pers_name, $pwd);
     }
 }
+
+function first_login($pers_name = '', $pwd = '')
+{
+    /*
+        Проверяет есть ли в таблице auth_users запись с данным персонажем, если есть обновляем, если нет, вставляем
+    */
+    $pers_name = htmlspecialchars($pers_name);
+    $query = "select pers_name from auth_users where pers_name='".$pers_name."'";
+    $result = mysql_query($query);
+    if(mysql_num_rows($result) > 0)
+    {
+        $uniq = RAND(1111111, 99999999);
+        $query = "update auth_users set uniq='".$uniq."' where pers_name='".$pers_name."'";
+        mysql_query($query);
+    }
+    else
+    {
+        $uniq = RAND(1111111, 99999999);
+        $query = "insert into auth_users (pers_name, uniq) values ('".$pers_name."', '".$uniq."')";
+    }
+}
