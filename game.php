@@ -13,6 +13,7 @@ include_once('functions.php');
     }
     else
     {
+      load_player();
       load_room(); //Загружаем местонахождение персонажа
       load_items(); //Загружаем игровые предметы в локации
       load_mobs(); //Загружаем неписей
