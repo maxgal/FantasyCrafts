@@ -14,7 +14,7 @@ function check_auth($pers_name = '', $uniq = '')
     */
     $pers_name = htmlspecialchars($pers_name);
     $uniq = (int) $uniq;
-    $query = "select pers_name, uniq from auth_users where pers_name='$pers_name'";
+    $query = "select pers_name, uniq from auth_users where pers_name='".$pers_name."'";
     $result = mysql_query($query);
     if(mysql_num_rows($result) > 0)
     {
@@ -23,4 +23,14 @@ function check_auth($pers_name = '', $uniq = '')
         else return false;
     }
     else return false;
+}
+
+function create_new_user($pers_name = '', $email = '', $pwd = '')
+{
+    /*
+        Проверяется нет ли такого пользователя. Если нет, записываем в таблицу pers_users. В поле first_play
+        ставим 1, что означает что игрок только создал персонажа
+    */
+    $pers_name = htmlspecialchars($pers_name);
+    $query = "select pers_name from pers_users where pers_name='".$pers_name."'";
 }
