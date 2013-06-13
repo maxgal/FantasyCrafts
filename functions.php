@@ -1,3 +1,5 @@
+<?php
+
 function show_login_page() 
 {
     echo "<form action='./' method='post'>";
