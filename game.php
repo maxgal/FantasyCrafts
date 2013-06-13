@@ -5,14 +5,7 @@ session_start(); //launch sessions
 require_once('db.php');
 include_once('functions.php');
 
-if (!check_login()) //Проверяем не пришло ли данных с формы авторизации
-{
-  show_login_page();
-  show_reg_page();
-}
-else
-{
-  if(check_auth())
+  if(check_auth($_SESSION['pers_name']), $_SESSION['id_uniq'])
   {
     //Если авторизация в порядке, загружаем игровые функции
     if(check_start())
@@ -30,4 +23,4 @@ else
   {
     echo "Hacking attempt! Logs sent to admins!";
   }
-}
+
