@@ -1,0 +1,8 @@
+function show_login_page() 
+{
+    echo "<form action='./' method='post'>";
+    echo "<input type=text name=pers_name size=30/><br/>";
+    echo "<input type=text name=pwd size=30/><br/>";
+    echo "<input type=submit name=logon value='Enter'/>";
+    echo "</form>";
+}
