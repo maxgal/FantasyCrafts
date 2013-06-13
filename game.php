@@ -2,6 +2,7 @@
 
 session_start(); //launch sessions
 
+require_once('db.php');
 include_once('functions.php');
 
 if (!check_login()) //Проверяем не пришло ли данных с формы авторизации
