@@ -33,4 +33,15 @@ function create_new_user($pers_name = '', $email = '', $pwd = '')
     */
     $pers_name = htmlspecialchars($pers_name);
     $query = "select pers_name from pers_users where pers_name='".$pers_name."'";
+    $result = mysql_query($query);
+    if(mysql_num_rows($result) > 0) show_error("This name is already taken!");
+    else
+    {
+        $email = htmlspecialchars($email);
+        $pwd = htmlspecialchars($pwd);
+        $pwd_md5 = md5(md5($pwd));
+        $query = "insert into pers_users (pers_name, email, pwd, first_play) values ('".$pers_name."', '".$email."', '".$pwd_md5."', '1')";
+        mysql_query($query);
+        first_login($pers_name, $pwd);
+    }
 }
