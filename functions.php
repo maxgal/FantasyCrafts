@@ -79,6 +79,7 @@ function first_login($pers_name = '')
     
     $_SESSION['pers_name'] = $pers_name;
     $_SESSION['id_uniq'] = $uniq;
+    return true;
 }
 
 function check_login()
