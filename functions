@@ -46,7 +46,7 @@ function create_new_user($pers_name = '', $email = '', $pwd = '')
     }
 }
 
-function first_login($pers_name = '', $pwd = '')
+function first_login($pers_name = '')
 {
     /*
         Проверяет есть ли в таблице auth_users запись с данным персонажем, если есть обновляем, если нет, вставляем
@@ -68,4 +68,16 @@ function first_login($pers_name = '', $pwd = '')
     
     $_SESSION['pers_name'] = $pers_name;
     $_SESSION['id_uniq'] = $uniq;
+}
+
+function check_login()
+{
+    if(isset($_POST['logon']))
+    {
+        $pers_name = htmlspecialchars($_POST['pers_name']);
+        $pwd = md5(md5($_POST['pwd']));
+        $query = "select pers_name from pers_users where pers_name='".$pers_name."' and pwd='".$pwd."'";
+        $result = mysql_query($query);
+        if(mysql_num_rows($result) > 0) first_login($pers_name);
+    }
 }
