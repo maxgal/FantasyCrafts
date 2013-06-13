@@ -93,3 +93,28 @@ function check_login()
         if(mysql_num_rows($result) > 0) first_login($pers_name);
     }
 }
+
+function check_start()
+{
+    //Данная функция проверяет активно ли обучение и если да, выводит необходимый текст
+    $pers_name = htmlspecialchars($_SESSION['pers_name']);
+    $query = "select first_play from pers_users where pers_name='".$pers_name."'";
+    $result = mysql_query($query);
+    if(mysql_num_rows($result) > 0)
+    {
+        $row = mysql_fetch_array($result, MYSQL_ASSOC);
+        if($row['first_play'] > 1 && $row['first_play'] < 9)
+        show_text($row['first_play']);
+        return true;
+    }
+    return false;
+}
+
+function show_text($page = '')
+{
+    $page = (int) $page;
+    $query = "select msg from game_texts where id='".$page."'";
+    $result = mysql_query($query);
+    $row = mysql_fetch_array($result, MYSQL_ASSOC);
+    echo $row['msg'];
+}
