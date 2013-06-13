@@ -58,11 +58,14 @@ function first_login($pers_name = '', $pwd = '')
     {
         $uniq = RAND(1111111, 99999999);
         $query = "update auth_users set uniq='".$uniq."' where pers_name='".$pers_name."'";
-        mysql_query($query);
+        mysql_query($query);    
     }
     else
     {
         $uniq = RAND(1111111, 99999999);
         $query = "insert into auth_users (pers_name, uniq) values ('".$pers_name."', '".$uniq."')";
     }
+    
+    $_SESSION['pers_name'] = $pers_name;
+    $_SESSION['id_uniq'] = $uniq;
 }
