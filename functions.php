@@ -117,5 +117,5 @@ function show_text($page = '')
     $result = mysql_query($query);
     $row = mysql_fetch_array($result, MYSQL_ASSOC);
     echo $row['msg'];
-    echo "<br/><a href='./game.php?start_next='>Продолжить</a>";
+    echo "<br/><a href='./newbie.php?start_next='>Продолжить</a>";
 }
